@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
+        android:id="@+id/contDialigFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:smoothScrollbar="false"
+        >
+        <LinearLayout
+            android:id="@+id/LineLayInside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/colorBackgroung"
+            >
+
+            <TextView
+                android:id="@+id/Text"
+                style="@style/oldManuskriptObj"
+                android:text="Стек"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/RadStack"
+        style="@style/RoundeManuskript"
+        android:text="Стек"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        />
+    <Button
+        android:id="@+id/RadSchedule"
+        style="@style/RoundeManuskript"
+        android:text="Расписание"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="110dp"
+        />
+</FrameLayout>

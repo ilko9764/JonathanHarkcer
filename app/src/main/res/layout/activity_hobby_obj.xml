@@ -1,0 +1,192 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/Panel"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    >
+<ScrollView
+    android:id="@+id/contDialigFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:smoothScrollbar="false"
+    >
+    <LinearLayout
+        android:id="@+id/LineLayInside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@color/colorBackgroung"
+        >
+
+        <TextView
+            android:id="@+id/nameText"
+            style="@style/oldManuskriptObj"
+            android:text="Что я хочю?"
+            />
+        <EditText
+            android:id="@+id/addName"
+            style="@style/oldManuskriptEditView"
+            />
+
+
+        <TextView
+            android:id="@+id/enjoyText"
+            style="@style/oldManuskriptObj"
+            android:text="Для чего я это делаю?"
+            />
+        <Spinner
+            android:id="@+id/addEnjoy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/forWhomDoingThisText"
+            style="@style/oldManuskriptObj"
+            android:text="Для кого я это делю?"
+            />
+        <EditText
+            android:id="@+id/addForWhomDoingThis"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/reasonForWantingText"
+            style="@style/oldManuskriptObj"
+            android:text="Причина почему я это захотел?"
+            />
+        <EditText
+            android:id="@+id/addReasonForWanting"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/inspirationText"
+            style="@style/oldManuskriptObj"
+            android:text="Какие события меня вдохновили?"
+            />
+        <EditText
+            android:id="@+id/addInspiration"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatISeeResaltText"
+            style="@style/oldManuskriptObj"
+            android:text="Каким я вижу результат?"
+            />
+        <EditText
+            android:id="@+id/addWhatISeeResalt"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatDoingResaltText"
+            style="@style/oldManuskriptObj"
+            android:text="Что я сделаю с результатом?"
+            />
+        <EditText
+            android:id="@+id/addWhatDoingResalt"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatMaterialsINeedText"
+            style="@style/oldManuskriptObj"
+            android:text="Какие материалы мне нужны?"
+            />
+        <EditText
+            android:id="@+id/addWhatMaterialsINeed"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/DressCodText"
+            style="@style/oldManuskriptObj"
+            android:text="Какая одежда мне нужна?"
+            />
+        <EditText
+            android:id="@+id/addDressCod"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatInformationINeedText"
+            style="@style/oldManuskriptObj"
+            android:text="Какой информацией нужно овладеть?"
+            />
+        <EditText
+            android:id="@+id/addWhatInformationINeed"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatItTakeTimeText"
+            style="@style/oldManuskriptObj"
+            android:text="Сколько времени я на это готов выделить?"
+            />
+        <EditText
+            android:id="@+id/addWhatItTakeTime"
+            style="@style/oldManuskriptEditView"
+            />
+
+        <TextView
+            android:id="@+id/WhatItTakeMoneyText"
+            style="@style/oldManuskriptObj"
+            android:text="Сколько денег я готов на это выделить?"
+            />
+        <EditText
+            android:id="@+id/addWhatItTakeMoney"
+            style="@style/oldManuskriptEditView"
+            />
+
+
+        <TextView
+            android:id="@+id/WhatItDiffcultyText"
+            style="@style/oldManuskriptObj"
+            android:text="Какая у этого всего сложность?"
+            />
+        <Spinner
+            android:id="@+id/addWhatItDiffculty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/nameParentsText"
+            style="@style/oldManuskriptObj"
+            android:text="Имя родительской цели"
+            />
+        <EditText
+            android:id="@+id/addNameParents"
+            style="@style/oldManuskriptEditView"
+            android:layout_marginBottom="110dp"
+            />
+
+    </LinearLayout>
+</ScrollView>
+<Button
+    android:id="@+id/RadHome"
+    style="@style/RoundeManuskript"
+    android:onClick="Home"
+    android:text="Домой"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
+    />
+<Button
+    android:id="@+id/AddAct"
+    style="@style/RoundeManuskript"
+    android:onClick="WriteRealTar"
+    android:text="Действие"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="110dp"
+    />
+<Button
+    android:id="@+id/AddSelfRealiz"
+    style="@style/RoundeManuskript"
+    android:onClick="WriteSelfRealization"
+    android:text="Добавить"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="200dp"
+    />
+</FrameLayout>

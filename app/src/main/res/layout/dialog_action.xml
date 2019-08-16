@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/TarText"
+        android:gravity="start"
+        style="@style/oldManuskriptDialog"
+        android:text="Что нужно сделать"
+        />
+
+    <EditText
+        android:id="@+id/addTar"
+        android:gravity="start"
+        style="@style/oldManuskriptEditView"
+        />
+
+    <Button
+        style="@style/oldManuskriptDialog"
+        android:id="@+id/addCalendar"
+        android:text="Когда"
+        />
+    <Button
+        style="@style/oldManuskriptDialog"
+        android:id="@+id/addTime"
+        android:text="В каком часу"
+        />
+
+</LinearLayout>

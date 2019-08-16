@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
+        android:id="@+id/contDialigFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:smoothScrollbar="false"
+        >
+        <LinearLayout
+            android:id="@+id/LineLayInside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/colorBackgroung"
+            >
+
+            <TextView
+                android:id="@+id/nameText"
+                style="@style/oldManuskriptObj"
+                android:text="Что я хочю?"
+                />
+            <EditText
+                android:id="@+id/addName"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/whatForText"
+                style="@style/oldManuskriptObj"
+                android:text="Зачем мне это?"
+                />
+            <EditText
+                android:id="@+id/addWhatFor"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/rewardText"
+                style="@style/oldManuskriptObj"
+                android:text="Какая награда меня за это ждёт?"
+                />
+            <Spinner
+                android:id="@+id/addReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/forItDoingThisText"
+                style="@style/oldManuskriptObj"
+                android:text="Для кого я это делю?"
+                />
+            <EditText
+                android:id="@+id/addforItDoingThis"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/reasonForWantingText"
+                style="@style/oldManuskriptObj"
+                android:text="Причина почему я это захотел?"
+                />
+            <EditText
+                android:id="@+id/addReasonForWantingText"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/inspirationText"
+                style="@style/oldManuskriptObj"
+                android:text="Какие события меня вдохновили?"
+                />
+            <EditText
+                android:id="@+id/addInspiration"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/influenceText"
+                style="@style/oldManuskriptObj"
+                android:text="Кто хочет что б я это сделал?"
+                />
+            <EditText
+                android:id="@+id/addInfluence"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/thereAfterText"
+                style="@style/oldManuskriptObj"
+                android:text="Какое влияние окажет на меня результат?"
+                />
+            <EditText
+                android:id="@+id/addThereAfter"
+                style="@style/oldManuskriptEditView"
+                />
+
+            <TextView
+                android:id="@+id/nameParentsText"
+                style="@style/oldManuskriptObj"
+                android:text="Имя родительской цели"
+                />
+            <EditText
+                android:id="@+id/addNameParents"
+                style="@style/oldManuskriptEditView"
+                android:layout_marginBottom="110dp"
+                />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/RadHome"
+        style="@style/RoundeManuskript"
+        android:onClick="Home"
+        android:text="Домой"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        />
+    <Button
+        android:id="@+id/AddAct"
+        style="@style/RoundeManuskript"
+        android:onClick="WriteRealTar"
+        android:text="Действие"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="110dp"
+        />
+    <Button
+        android:id="@+id/AddSPersLife"
+        style="@style/RoundeManuskript"
+        android:onClick="WriteSelfRealization"
+        android:text="Добавить"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="200dp"
+        />
+</FrameLayout>

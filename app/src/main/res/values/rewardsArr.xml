@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="rewArr">
+        <item>Деньги(количество единиц валюты)</item>
+        <item>Власть(количество подчиненных людей)</item>
+        <item>Знания(навыки которые изменяют реальность)</item>
+    </string-array>
+
+    <string-array name="hobbyEnjArr">
+        <item>Эмоции(прыжок с парашута напр.)</item>
+        <item>Чювства(чювство свого тела, поход напр.)</item>
+        <item>Эстетика(изготовить что либо)</item>
+    </string-array>
+
+    <string-array name="hobbyDifArr">
+        <item>Легко</item>
+        <item>Требует подхода</item>
+        <item>Сложно</item>
+        <item>Уровень проекта</item>
+    </string-array>
+
+    <string-array name="PersLifeArr">
+        <item>Знакомство</item>
+        <item>Свидание</item>
+        <item>Приятно проведённое время</item>
+        <item>Романтика</item>
+    </string-array>
+</resources>
