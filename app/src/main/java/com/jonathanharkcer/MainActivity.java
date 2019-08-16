@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,27 +7,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import android.text.style.TypefaceSpan;
-import android.util.LruCache;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.lang.reflect.Array;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +15,8 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,28 +33,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class HobbyObj extends AppCompatActivity implements DataDialog {
+public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
-    private  String fileName = "Hobby.json";
-    private JasonHelp<HobbyTarget> jasonHelp;
 
-    List<HobbyTarget> list;
+    private String fileName = "PersonalLife.json";
+    private JasonHelp<PersonalLifeTarget> jasonHelp;
 
-    private HobbyTarget hobbyTarget = null;
+    List<PersonalLifeTarget> list;
+
+    private PersonalLifeTarget personalLifeTarget = null;
 
     private String name = null;
-    private String enjoy = null;
-    private String forWhomDoingThis = null;
+    private String whatFor = null;
+    private String reward = null;
+    private String forWhomIDoingThis = null;
     private String reasonForWanting = null;
     private String inspiration = null;
-    private String whatISeeResalt = null;
-    private String whatDoingResalt = null;
-    private String whatMaterialsINeed = null;
-    private String dressCod = null;
-    private String whatInformationINeed = null;
-    private String whatItTakeTime = null;
-    private String whatItTakeMoney = null;
-    private String whatItDiffculty = null;
+    private String influence = null;
+    private String thereAfter = null;
     private String nameParents = null;
     private List<RealActionTar> realActionTarListObj = null;
 
@@ -70,10 +64,11 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
 
     private boolean flagButtonAnim = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hobby_obj);
+        setContentView(R.layout.activity_personal_life_obj);
 
         //----------------------------------------------------------
         ActionBar actionBar = getSupportActionBar();
@@ -95,21 +90,16 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
         //-------------------------------------------------------------
 
 
-        Spinner spinnerEnj = (Spinner) findViewById(R.id.addEnjoy);
-        Spinner spinnerDif = (Spinner) findViewById(R.id.addWhatItDiffculty);
+        Spinner spinner = (Spinner) findViewById(R.id.addReward);
 
-        String[] enj = getResources().getStringArray(R.array.hobbyEnjArr);
-        String[] dif = getResources().getStringArray(R.array.hobbyDifArr);
+        String[] rew = getResources().getStringArray(R.array.rewArr);
 
-        ArrayAdapter<String> adapterEnj = new ArrayAdapter<String>(this, R.layout.spinner_style, enj);
-        ArrayAdapter<String> adapterDif = new ArrayAdapter<String>(this, R.layout.spinner_style, dif);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_style, rew);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_style);
 
-        adapterEnj.setDropDownViewResource(R.layout.spinner_dropdown_style);
-        adapterDif.setDropDownViewResource(R.layout.spinner_dropdown_style);
+        spinner.setAdapter(adapter);
 
-        spinnerEnj.setAdapter(adapterEnj);
-        spinnerDif.setAdapter(adapterDif);
-
+        jasonHelp = new JasonHelp<>(fileName);
 
         //----------------------------------------------------------------
 
@@ -132,7 +122,6 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
             }
         });
 
-        jasonHelp = new JasonHelp<>(fileName);
 
     }
 
@@ -165,7 +154,7 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
 
         Button bt = (Button)findViewById(R.id.RadHome);
         Button bt2 = (Button)findViewById(R.id.AddAct);
-        Button bt3 = (Button)findViewById(R.id.AddSelfRealiz);
+        Button bt3 = (Button)findViewById(R.id.AddSPersLife);
 
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(bt, "translationX", -px1);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bt2, "translationY", px2);
@@ -219,7 +208,7 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
 
         Button bt = (Button)findViewById(R.id.RadHome);
         Button bt2 = (Button)findViewById(R.id.AddAct);
-        Button bt3 = (Button)findViewById(R.id.AddSelfRealiz);
+        Button bt3 = (Button)findViewById(R.id.AddSPersLife);
 
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(bt, "translationX", 0f);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bt2, "translationY", 0f);
@@ -246,7 +235,7 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
 
     public void ChechList()
     {
-        list = jasonHelp.imoportFronJSON(this, HobbyTarget.class);
+        list = jasonHelp.imoportFronJSON(this, PersonalLifeTarget.class);
         if(list == null)
         {
             list = new ArrayList<>();
@@ -287,13 +276,13 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
     }
     @Override
     public void setDate(View v) {
-        new DatePickerDialog(HobbyObj.this, dac,
+        new DatePickerDialog(PersonalLifeObj.this, dac,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
     }
     public void setTime(View v){
-        new TimePickerDialog(HobbyObj.this, tic,
+        new TimePickerDialog(PersonalLifeObj.this, tic,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
                 dateAndTime.get(Calendar.MINUTE), true).show();
     }
@@ -348,41 +337,26 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
         EditText addName = (EditText) findViewById(R.id.addName);
         name = addName.getText().toString();
 
-        Spinner addEnjoy = (Spinner)findViewById(R.id.addEnjoy);
-        enjoy = addEnjoy.getSelectedItem().toString();
+        EditText addWhatFor = (EditText) findViewById(R.id.addWhatFor);
+        whatFor = addWhatFor.getText().toString();
 
-        EditText addForWhomDoingThis = (EditText)findViewById(R.id.addForWhomDoingThis);
-        forWhomDoingThis = addForWhomDoingThis.getText().toString();
+        Spinner addReward = (Spinner) findViewById(R.id.addReward);
+        reward = addReward.getSelectedItem().toString();
 
-        EditText addReasonForWanting = (EditText)findViewById(R.id.addReasonForWanting);
+        EditText addFromWhom = (EditText) findViewById(R.id.addforItDoingThis);
+        forWhomIDoingThis = addFromWhom.getText().toString();
+
+        EditText addReasonForWanting = (EditText) findViewById(R.id.addReasonForWantingText);
         reasonForWanting = addReasonForWanting.getText().toString();
 
         EditText addInspiration = (EditText) findViewById(R.id.addInspiration);
         inspiration = addInspiration.getText().toString();
 
-        EditText addIWhatISeeResalt = (EditText) findViewById(R.id.addWhatISeeResalt);
-        whatISeeResalt = addIWhatISeeResalt.getText().toString();
+        EditText addInfluense = (EditText) findViewById(R.id.addInfluence);
+        influence = addInfluense.getText().toString();
 
-        EditText addWhatDoingResalt = (EditText) findViewById(R.id.addWhatDoingResalt);
-        whatDoingResalt = addWhatDoingResalt.getText().toString();
-
-        EditText addWhatMaterialsINeed = (EditText) findViewById(R.id.addWhatMaterialsINeed);
-        whatMaterialsINeed = addWhatMaterialsINeed.getText().toString();
-
-        EditText addDressCod = (EditText) findViewById(R.id.addDressCod);
-        dressCod = addDressCod.getText().toString();
-
-        EditText addWhatInformationINeed = (EditText) findViewById(R.id.addWhatInformationINeed);
-        whatInformationINeed = addWhatInformationINeed.getText().toString();
-
-        EditText addWhatItTakeTime = (EditText) findViewById(R.id.addWhatItTakeTime);
-        whatItTakeTime = addWhatItTakeTime.getText().toString();
-
-        EditText addWhatItTakeMoney = (EditText) findViewById(R.id.addWhatItTakeMoney);
-        whatItTakeMoney = addWhatItTakeMoney.getText().toString();
-
-        Spinner addWhatItDiffculty = (Spinner) findViewById(R.id.addWhatItDiffculty);
-        whatItDiffculty = addWhatItDiffculty.getSelectedItem().toString();
+        EditText addTheraAfter = (EditText) findViewById(R.id.addThereAfter);
+        thereAfter = addTheraAfter.getText().toString();
 
         EditText addNamePatents = (EditText) findViewById(R.id.addNameParents);
         nameParents = addNamePatents.getText().toString();
@@ -402,52 +376,37 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
     //-----------------------------------------------------------------------------------Записать поля в объект SelfRealiz;  Очистить буфера Name, NameParens, Resolve, RealTarListObj  ... ( инициализизировать null)
     public void StepFive()
     {
-        hobbyTarget = new  HobbyTarget();
+        personalLifeTarget = new PersonalLifeTarget();
         if (name.length() != 0)
-            hobbyTarget.setName(name);
-        if (enjoy.length() != 0)
-            hobbyTarget.setEnjoy(enjoy);
-        if (forWhomDoingThis.length() != 0)
-            hobbyTarget.setForWhomDoingThis(forWhomDoingThis);
+            personalLifeTarget.setName(name);
+        if (whatFor.length() != 0)
+            personalLifeTarget.setWhatFor(whatFor);
+        if (reward.length() != 0)
+            personalLifeTarget.setReward(reward);
+        if (forWhomIDoingThis.length() != 0)
+            personalLifeTarget.setForWhomIDoingThis(forWhomIDoingThis);
         if (reasonForWanting.length() != 0)
-            hobbyTarget.setReasonForWanting(reasonForWanting);
+            personalLifeTarget.setReasonForWanting(reasonForWanting);
         if (inspiration.length() != 0)
-            hobbyTarget.setInspiration(inspiration);
-        if (whatISeeResalt.length() != 0)
-            hobbyTarget.setWhatISeeResalt(whatISeeResalt);
-        if (whatDoingResalt.length() != 0)
-            hobbyTarget.setWhatDoingResalt(whatDoingResalt);
-        if (whatMaterialsINeed.length() != 0)
-            hobbyTarget.setWhatMaterialsINeed(whatMaterialsINeed);
-        if (dressCod.length() != 0)
-            hobbyTarget.setDressCod(dressCod);
-
-        if (whatInformationINeed.length() != 0)
-            hobbyTarget.setWhatInformationINeed(whatInformationINeed);
-        if (whatItTakeTime.length() != 0)
-            hobbyTarget.setWhatItTakeTime(whatItTakeTime);
-        if (whatItTakeMoney.length() != 0)
-            hobbyTarget.setWhatItTakeMoney(whatItTakeMoney);
-        if (whatItDiffculty.length() != 0)
-            hobbyTarget.setWhatItDiffculty(whatItDiffculty);
+            personalLifeTarget.setInspiration(inspiration);
+        if (influence.length() != 0)
+            personalLifeTarget.setInfluence(influence);
+        if (thereAfter.length() != 0)
+            personalLifeTarget.setThereAfter(thereAfter);
         if (nameParents.length() != 0)
-            hobbyTarget.setNameParents(nameParents);
+            personalLifeTarget.setNameParens(nameParents);
         if (realActionTarListObj.size() != 0)
-            hobbyTarget.setRealActionList(realActionTarListObj);
+            personalLifeTarget.setRealActionList(realActionTarListObj);
+
 
         name = null;
-        enjoy = null;
-        forWhomDoingThis = null;
+        whatFor = null;
+        reward = null;
+        forWhomIDoingThis = null;
         reasonForWanting = null;
         inspiration = null;
-        whatISeeResalt = null;
-        whatDoingResalt = null;
-        whatMaterialsINeed = null;
-        dressCod = null;
-        whatInformationINeed = null;
-        whatItTakeTime = null;
-        whatItTakeMoney = null;
-        whatItDiffculty = null;
+        influence = null;
+        thereAfter = null;
         nameParents = null;
         realActionTarListObj = null;
     }
@@ -457,8 +416,8 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
     //------------------------------------------------------------------------------------Записать SelfRealiz в список list; Очистить буфер SelfRealiz ( инициализизировать null)
     public void StepSix()
     {
-        if(hobbyTarget.getName() != null){
-            list.add(hobbyTarget);
+        if(personalLifeTarget.getName() != null){
+            list.add(personalLifeTarget);
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_LONG).show();
         }
         else {
@@ -467,14 +426,14 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
 
 
 
-        hobbyTarget = null;
+        personalLifeTarget = null;
     }
     //-----------------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------------------Записати в ясон
     public void StepSewen()
     {
-        boolean result = jasonHelp.exportToJSON(this, list, HobbyTarget.class);
+        boolean result = jasonHelp.exportToJSON(this, list, PersonalLifeTarget.class);
 
         list = null;
     }
@@ -504,3 +463,5 @@ public class HobbyObj extends AppCompatActivity implements DataDialog {
         StepSewen();
     }
 }
+
+

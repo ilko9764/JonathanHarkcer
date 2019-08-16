@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import java.util.ArrayList;
 import java.util.List;

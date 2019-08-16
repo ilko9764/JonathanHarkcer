@@ -1,16 +1,13 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.widget.NestedScrollView;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -18,53 +15,46 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.format.DateUtils;
-import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.view.View.OnTouchListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
-    private String fileName = "SelfRealization.json";
-    private JasonHelp<SelfRealizationTarget> jasonHelp;
+public class HobbyObj extends AppCompatActivity implements DataDialog {
 
-    List<SelfRealizationTarget> list;
+    private  String fileName = "Hobby.json";
+    private JasonHelp<HobbyTarget> jasonHelp;
 
-    private SelfRealizationTarget selfRealizationTarget = null;
+    List<HobbyTarget> list;
+
+    private HobbyTarget hobbyTarget = null;
 
     private String name = null;
-    private String whatFor = null;
-    private String reward = null;
-    private String forWhomIDoingThis = null;
+    private String enjoy = null;
+    private String forWhomDoingThis = null;
     private String reasonForWanting = null;
     private String inspiration = null;
-    private String influence = null;
-    private String thereAfter = null;
+    private String whatISeeResalt = null;
+    private String whatDoingResalt = null;
+    private String whatMaterialsINeed = null;
+    private String dressCod = null;
+    private String whatInformationINeed = null;
+    private String whatItTakeTime = null;
+    private String whatItTakeMoney = null;
+    private String whatItDiffculty = null;
     private String nameParents = null;
     private List<RealActionTar> realActionTarListObj = null;
 
@@ -81,7 +71,7 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_self_realization_obj);
+        setContentView(R.layout.activity_hobby_obj);
 
         //----------------------------------------------------------
         ActionBar actionBar = getSupportActionBar();
@@ -103,16 +93,21 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
         //-------------------------------------------------------------
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.addReward);
+        Spinner spinnerEnj = (Spinner) findViewById(R.id.addEnjoy);
+        Spinner spinnerDif = (Spinner) findViewById(R.id.addWhatItDiffculty);
 
-        String[] rew = getResources().getStringArray(R.array.rewArr);
+        String[] enj = getResources().getStringArray(R.array.hobbyEnjArr);
+        String[] dif = getResources().getStringArray(R.array.hobbyDifArr);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_style, rew);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_style);
+        ArrayAdapter<String> adapterEnj = new ArrayAdapter<String>(this, R.layout.spinner_style, enj);
+        ArrayAdapter<String> adapterDif = new ArrayAdapter<String>(this, R.layout.spinner_style, dif);
 
-        spinner.setAdapter(adapter);
+        adapterEnj.setDropDownViewResource(R.layout.spinner_dropdown_style);
+        adapterDif.setDropDownViewResource(R.layout.spinner_dropdown_style);
 
-        jasonHelp = new JasonHelp<>("SelfRealization.json");
+        spinnerEnj.setAdapter(adapterEnj);
+        spinnerDif.setAdapter(adapterDif);
+
 
         //----------------------------------------------------------------
 
@@ -120,7 +115,7 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
 
 
 
-       final ScrollView sv = (ScrollView)findViewById(R.id.contDialigFragment);
+        final ScrollView sv = (ScrollView)findViewById(R.id.contDialigFragment);
         sv.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -135,6 +130,7 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
             }
         });
 
+        jasonHelp = new JasonHelp<>(fileName);
 
     }
 
@@ -248,10 +244,10 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
 
     public void ChechList()
     {
-        list = jasonHelp.imoportFronJSON(this, SelfRealizationTarget.class);
+        list = jasonHelp.imoportFronJSON(this, HobbyTarget.class);
         if(list == null)
         {
-            list = new  ArrayList<>();
+            list = new ArrayList<>();
         }
     }
 
@@ -289,13 +285,13 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
     }
     @Override
     public void setDate(View v) {
-        new DatePickerDialog(SelfRealizationObj.this, dac,
+        new DatePickerDialog(HobbyObj.this, dac,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
     }
     public void setTime(View v){
-        new TimePickerDialog(SelfRealizationObj.this, tic,
+        new TimePickerDialog(HobbyObj.this, tic,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
                 dateAndTime.get(Calendar.MINUTE), true).show();
     }
@@ -350,26 +346,41 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
         EditText addName = (EditText) findViewById(R.id.addName);
         name = addName.getText().toString();
 
-        EditText addWhatFor = (EditText) findViewById(R.id.addWhatFor);
-        whatFor = addWhatFor.getText().toString();
+        Spinner addEnjoy = (Spinner)findViewById(R.id.addEnjoy);
+        enjoy = addEnjoy.getSelectedItem().toString();
 
-        Spinner addReward = (Spinner) findViewById(R.id.addReward);
-        reward = addReward.getSelectedItem().toString();
+        EditText addForWhomDoingThis = (EditText)findViewById(R.id.addForWhomDoingThis);
+        forWhomDoingThis = addForWhomDoingThis.getText().toString();
 
-        EditText addFromWhom = (EditText) findViewById(R.id.addforItDoingThis);
-        forWhomIDoingThis = addFromWhom.getText().toString();
-
-        EditText addReasonForWanting = (EditText) findViewById(R.id.addReasonForWantingText);
+        EditText addReasonForWanting = (EditText)findViewById(R.id.addReasonForWanting);
         reasonForWanting = addReasonForWanting.getText().toString();
 
         EditText addInspiration = (EditText) findViewById(R.id.addInspiration);
         inspiration = addInspiration.getText().toString();
 
-        EditText addInfluense = (EditText) findViewById(R.id.addInfluence);
-        influence = addInfluense.getText().toString();
+        EditText addIWhatISeeResalt = (EditText) findViewById(R.id.addWhatISeeResalt);
+        whatISeeResalt = addIWhatISeeResalt.getText().toString();
 
-        EditText addTheraAfter = (EditText) findViewById(R.id.addThereAfter);
-        thereAfter = addTheraAfter.getText().toString();
+        EditText addWhatDoingResalt = (EditText) findViewById(R.id.addWhatDoingResalt);
+        whatDoingResalt = addWhatDoingResalt.getText().toString();
+
+        EditText addWhatMaterialsINeed = (EditText) findViewById(R.id.addWhatMaterialsINeed);
+        whatMaterialsINeed = addWhatMaterialsINeed.getText().toString();
+
+        EditText addDressCod = (EditText) findViewById(R.id.addDressCod);
+        dressCod = addDressCod.getText().toString();
+
+        EditText addWhatInformationINeed = (EditText) findViewById(R.id.addWhatInformationINeed);
+        whatInformationINeed = addWhatInformationINeed.getText().toString();
+
+        EditText addWhatItTakeTime = (EditText) findViewById(R.id.addWhatItTakeTime);
+        whatItTakeTime = addWhatItTakeTime.getText().toString();
+
+        EditText addWhatItTakeMoney = (EditText) findViewById(R.id.addWhatItTakeMoney);
+        whatItTakeMoney = addWhatItTakeMoney.getText().toString();
+
+        Spinner addWhatItDiffculty = (Spinner) findViewById(R.id.addWhatItDiffculty);
+        whatItDiffculty = addWhatItDiffculty.getSelectedItem().toString();
 
         EditText addNamePatents = (EditText) findViewById(R.id.addNameParents);
         nameParents = addNamePatents.getText().toString();
@@ -389,37 +400,52 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
     //-----------------------------------------------------------------------------------Записать поля в объект SelfRealiz;  Очистить буфера Name, NameParens, Resolve, RealTarListObj  ... ( инициализизировать null)
     public void StepFive()
     {
-        selfRealizationTarget = new SelfRealizationTarget();
+        hobbyTarget = new  HobbyTarget();
         if (name.length() != 0)
-            selfRealizationTarget.setName(name);
-        if (whatFor.length() != 0)
-            selfRealizationTarget.setWhatFor(whatFor);
-        if (reward.length() != 0)
-            selfRealizationTarget.setReward(reward);
-        if (forWhomIDoingThis.length() != 0)
-            selfRealizationTarget.setForWhomIDoingThis(forWhomIDoingThis);
+            hobbyTarget.setName(name);
+        if (enjoy.length() != 0)
+            hobbyTarget.setEnjoy(enjoy);
+        if (forWhomDoingThis.length() != 0)
+            hobbyTarget.setForWhomDoingThis(forWhomDoingThis);
         if (reasonForWanting.length() != 0)
-            selfRealizationTarget.setReasonForWanting(reasonForWanting);
+            hobbyTarget.setReasonForWanting(reasonForWanting);
         if (inspiration.length() != 0)
-            selfRealizationTarget.setInspiration(inspiration);
-        if (influence.length() != 0)
-            selfRealizationTarget.setInfluence(influence);
-        if (thereAfter.length() != 0)
-            selfRealizationTarget.setThereAfter(thereAfter);
-        if (nameParents.length() != 0)
-            selfRealizationTarget.setNameParens(nameParents);
-        if (realActionTarListObj.size() != 0)
-            selfRealizationTarget.setRealActionList(realActionTarListObj);
+            hobbyTarget.setInspiration(inspiration);
+        if (whatISeeResalt.length() != 0)
+            hobbyTarget.setWhatISeeResalt(whatISeeResalt);
+        if (whatDoingResalt.length() != 0)
+            hobbyTarget.setWhatDoingResalt(whatDoingResalt);
+        if (whatMaterialsINeed.length() != 0)
+            hobbyTarget.setWhatMaterialsINeed(whatMaterialsINeed);
+        if (dressCod.length() != 0)
+            hobbyTarget.setDressCod(dressCod);
 
+        if (whatInformationINeed.length() != 0)
+            hobbyTarget.setWhatInformationINeed(whatInformationINeed);
+        if (whatItTakeTime.length() != 0)
+            hobbyTarget.setWhatItTakeTime(whatItTakeTime);
+        if (whatItTakeMoney.length() != 0)
+            hobbyTarget.setWhatItTakeMoney(whatItTakeMoney);
+        if (whatItDiffculty.length() != 0)
+            hobbyTarget.setWhatItDiffculty(whatItDiffculty);
+        if (nameParents.length() != 0)
+            hobbyTarget.setNameParents(nameParents);
+        if (realActionTarListObj.size() != 0)
+            hobbyTarget.setRealActionList(realActionTarListObj);
 
         name = null;
-        whatFor = null;
-        reward = null;
-        forWhomIDoingThis = null;
+        enjoy = null;
+        forWhomDoingThis = null;
         reasonForWanting = null;
         inspiration = null;
-        influence = null;
-        thereAfter = null;
+        whatISeeResalt = null;
+        whatDoingResalt = null;
+        whatMaterialsINeed = null;
+        dressCod = null;
+        whatInformationINeed = null;
+        whatItTakeTime = null;
+        whatItTakeMoney = null;
+        whatItDiffculty = null;
         nameParents = null;
         realActionTarListObj = null;
     }
@@ -429,8 +455,8 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
     //------------------------------------------------------------------------------------Записать SelfRealiz в список list; Очистить буфер SelfRealiz ( инициализизировать null)
     public void StepSix()
     {
-        if(selfRealizationTarget.getName() != null){
-            list.add(selfRealizationTarget);
+        if(hobbyTarget.getName() != null){
+            list.add(hobbyTarget);
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_LONG).show();
         }
         else {
@@ -439,14 +465,14 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
 
 
 
-        selfRealizationTarget = null;
+        hobbyTarget = null;
     }
     //-----------------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------------------Записати в ясон
     public void StepSewen()
     {
-        boolean result = jasonHelp.exportToJSON(this, list, SelfRealizationTarget.class);
+        boolean result = jasonHelp.exportToJSON(this, list, HobbyTarget.class);
 
         list = null;
     }
@@ -476,4 +502,3 @@ public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
         StepSewen();
     }
 }
-

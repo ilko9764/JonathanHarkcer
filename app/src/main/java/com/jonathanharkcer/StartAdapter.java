@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

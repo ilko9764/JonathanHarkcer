@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -34,15 +33,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
+public class SelfRealizationObj extends AppCompatActivity implements DataDialog{
+    private String fileName = "SelfRealization.json";
+    private JasonHelp<SelfRealizationTarget> jasonHelp;
 
+    List<SelfRealizationTarget> list;
 
-    private String fileName = "PersonalLife.json";
-    private JasonHelp<PersonalLifeTarget> jasonHelp;
-
-    List<PersonalLifeTarget> list;
-
-    private PersonalLifeTarget personalLifeTarget = null;
+    private SelfRealizationTarget selfRealizationTarget = null;
 
     private String name = null;
     private String whatFor = null;
@@ -65,11 +62,10 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
     private boolean flagButtonAnim = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_life_obj);
+        setContentView(R.layout.activity_self_realization_obj);
 
         //----------------------------------------------------------
         ActionBar actionBar = getSupportActionBar();
@@ -100,7 +96,7 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
         spinner.setAdapter(adapter);
 
-        jasonHelp = new JasonHelp<>(fileName);
+        jasonHelp = new JasonHelp<>("SelfRealization.json");
 
         //----------------------------------------------------------------
 
@@ -108,7 +104,7 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
 
 
-        final ScrollView sv = (ScrollView)findViewById(R.id.contDialigFragment);
+       final ScrollView sv = (ScrollView)findViewById(R.id.contDialigFragment);
         sv.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -155,7 +151,7 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
         Button bt = (Button)findViewById(R.id.RadHome);
         Button bt2 = (Button)findViewById(R.id.AddAct);
-        Button bt3 = (Button)findViewById(R.id.AddSPersLife);
+        Button bt3 = (Button)findViewById(R.id.AddSelfRealiz);
 
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(bt, "translationX", -px1);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bt2, "translationY", px2);
@@ -209,7 +205,7 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
         Button bt = (Button)findViewById(R.id.RadHome);
         Button bt2 = (Button)findViewById(R.id.AddAct);
-        Button bt3 = (Button)findViewById(R.id.AddSPersLife);
+        Button bt3 = (Button)findViewById(R.id.AddSelfRealiz);
 
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(bt, "translationX", 0f);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bt2, "translationY", 0f);
@@ -236,10 +232,10 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
     public void ChechList()
     {
-        list = jasonHelp.imoportFronJSON(this, PersonalLifeTarget.class);
+        list = jasonHelp.imoportFronJSON(this, SelfRealizationTarget.class);
         if(list == null)
         {
-            list = new ArrayList<>();
+            list = new  ArrayList<>();
         }
     }
 
@@ -277,13 +273,13 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
     }
     @Override
     public void setDate(View v) {
-        new DatePickerDialog(PersonalLifeObj.this, dac,
+        new DatePickerDialog(SelfRealizationObj.this, dac,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
     }
     public void setTime(View v){
-        new TimePickerDialog(PersonalLifeObj.this, tic,
+        new TimePickerDialog(SelfRealizationObj.this, tic,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
                 dateAndTime.get(Calendar.MINUTE), true).show();
     }
@@ -377,27 +373,27 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
     //-----------------------------------------------------------------------------------Записать поля в объект SelfRealiz;  Очистить буфера Name, NameParens, Resolve, RealTarListObj  ... ( инициализизировать null)
     public void StepFive()
     {
-        personalLifeTarget = new PersonalLifeTarget();
+        selfRealizationTarget = new SelfRealizationTarget();
         if (name.length() != 0)
-            personalLifeTarget.setName(name);
+            selfRealizationTarget.setName(name);
         if (whatFor.length() != 0)
-            personalLifeTarget.setWhatFor(whatFor);
+            selfRealizationTarget.setWhatFor(whatFor);
         if (reward.length() != 0)
-            personalLifeTarget.setReward(reward);
+            selfRealizationTarget.setReward(reward);
         if (forWhomIDoingThis.length() != 0)
-            personalLifeTarget.setForWhomIDoingThis(forWhomIDoingThis);
+            selfRealizationTarget.setForWhomIDoingThis(forWhomIDoingThis);
         if (reasonForWanting.length() != 0)
-            personalLifeTarget.setReasonForWanting(reasonForWanting);
+            selfRealizationTarget.setReasonForWanting(reasonForWanting);
         if (inspiration.length() != 0)
-            personalLifeTarget.setInspiration(inspiration);
+            selfRealizationTarget.setInspiration(inspiration);
         if (influence.length() != 0)
-            personalLifeTarget.setInfluence(influence);
+            selfRealizationTarget.setInfluence(influence);
         if (thereAfter.length() != 0)
-            personalLifeTarget.setThereAfter(thereAfter);
+            selfRealizationTarget.setThereAfter(thereAfter);
         if (nameParents.length() != 0)
-            personalLifeTarget.setNameParens(nameParents);
+            selfRealizationTarget.setNameParens(nameParents);
         if (realActionTarListObj.size() != 0)
-            personalLifeTarget.setRealActionList(realActionTarListObj);
+            selfRealizationTarget.setRealActionList(realActionTarListObj);
 
 
         name = null;
@@ -417,8 +413,8 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
     //------------------------------------------------------------------------------------Записать SelfRealiz в список list; Очистить буфер SelfRealiz ( инициализизировать null)
     public void StepSix()
     {
-        if(personalLifeTarget.getName() != null){
-            list.add(personalLifeTarget);
+        if(selfRealizationTarget.getName() != null){
+            list.add(selfRealizationTarget);
             Toast.makeText(this, "Запись добавлена", Toast.LENGTH_LONG).show();
         }
         else {
@@ -427,14 +423,14 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
 
 
 
-        personalLifeTarget = null;
+        selfRealizationTarget = null;
     }
     //-----------------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------------------Записати в ясон
     public void StepSewen()
     {
-        boolean result = jasonHelp.exportToJSON(this, list, PersonalLifeTarget.class);
+        boolean result = jasonHelp.exportToJSON(this, list, SelfRealizationTarget.class);
 
         list = null;
     }
@@ -464,5 +460,4 @@ public class PersonalLifeObj extends AppCompatActivity implements DataDialog {
         StepSewen();
     }
 }
-
 

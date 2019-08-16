@@ -1,10 +1,10 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-class SelfRealizationTarget {
+public class PersonalLifeTarget {
+
     private String name;
     private String whatFor;
     private String reward;
@@ -17,7 +17,7 @@ class SelfRealizationTarget {
 
     private List<RealActionTar> realActionList;
 
-    public SelfRealizationTarget(){
+    public PersonalLifeTarget (){
         name = null;
         whatFor = null;
         reward = null;
@@ -27,7 +27,7 @@ class SelfRealizationTarget {
         influence = null;
         thereAfter = null;
         nameParents = null;
-        realActionList = new  ArrayList<>();
+        realActionList = new ArrayList<>();
     }
 
 

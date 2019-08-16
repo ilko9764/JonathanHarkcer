@@ -1,7 +1,6 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class RealActionTar {
     private Calendar calendar;

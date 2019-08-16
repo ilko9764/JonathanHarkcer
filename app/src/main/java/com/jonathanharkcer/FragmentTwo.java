@@ -1,4 +1,4 @@
-package com.example.jonathanharkcer;
+package com.jonathanharkcer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
